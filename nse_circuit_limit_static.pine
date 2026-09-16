@@ -4,8 +4,30 @@ indicator("NSE Circuit Limit - Static", shorttitle="NSE Circuit", overlay=true)
 // AUTO-GENERATED FILE.
 // Source: NSE sec_list.csv.
 // Regenerate this file instead of manually editing symbol groups.
-// Generated: 2026-09-16 13:57:22
+// Generated: 2026-09-16 14:02:00
 // Unique symbols: 3529
+
+// Table settings
+tableLoc = input.string("Top Right", "Table Position", options=["Top Left", "Top Center", "Top Right", "Middle Left", "Middle Center", "Middle Right", "Bottom Left", "Bottom Center", "Bottom Right"])
+tableSize = input.string("Normal", "Text Size", options=["Tiny", "Small", "Normal", "Large", "Huge"])
+
+tablePos = switch tableLoc
+    "Top Left"      => position.top_left
+    "Top Center"    => position.top_center
+    "Top Right"     => position.top_right
+    "Middle Left"   => position.middle_left
+    "Middle Center" => position.middle_center
+    "Middle Right"  => position.middle_right
+    "Bottom Left"   => position.bottom_left
+    "Bottom Center" => position.bottom_center
+    => position.bottom_right
+
+tableTextSize = switch tableSize
+    "Tiny"   => size.tiny
+    "Small"  => size.small
+    "Large"  => size.large
+    "Huge"   => size.huge
+    => size.normal
 
 string key = "|" + syminfo.ticker + "|"
 
@@ -39,10 +61,10 @@ string circuit = switch
     isNoBand => "No Band"
     => "Not Found"
 
-var table t = table.new(position.top_right, 2, 2, border_width=1)
+var table t = table.new(tablePos, 2, 2, border_width=1)
 
 if barstate.islast
-    table.cell(t, 0, 0, "Symbol", text_size=size.normal)
-    table.cell(t, 1, 0, syminfo.ticker, text_size=size.normal)
-    table.cell(t, 0, 1, "Circuit Limit", text_size=size.normal)
-    table.cell(t, 1, 1, circuit, text_size=size.normal)
+    table.cell(t, 0, 0, "Symbol", text_size=tableTextSize, text_color=color.white)
+    table.cell(t, 1, 0, syminfo.ticker, text_size=tableTextSize, text_color=color.white)
+    table.cell(t, 0, 1, "Circuit Limit", text_size=tableTextSize, text_color=color.white)
+    table.cell(t, 1, 1, circuit, text_size=tableTextSize, text_color=color.white)

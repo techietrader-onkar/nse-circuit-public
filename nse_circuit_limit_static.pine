@@ -4,7 +4,7 @@ indicator("NSE Circuit Limit - Static", shorttitle="NSE Circuit", overlay=true)
 // AUTO-GENERATED FILE.
 // Source: NSE sec_list.csv.
 // Regenerate this file instead of manually editing symbol groups.
-// Generated: 2026-09-16 16:42:30
+// Generated: 2026-09-17 07:56:55
 // Unique symbols: 3529
 
 // Table settings
